@@ -1,6 +1,6 @@
 {
-  "name": "stash",
-  "version": "1.0.0",
+  "name": "command-stash",
+  "version": "1.0.1",
   "description": "console help tool for save, list and retrive to clipboard your important shell commands",
   "preferGlobal": true,
   "bin": {
