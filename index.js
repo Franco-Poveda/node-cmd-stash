@@ -1,76 +1,58 @@
-var fs = require("fs");
-var ncp = require("copy-paste");
+#!/usr/bin/env node
+'use strict'
 
-var file = "test.db";
-var exists = fs.existsSync(file);
+const fs      = require('fs'),
+      ncp     = require('copy-paste'),
+      colors  = require('colors'),
+      sqlite3 = require('sqlite3');
 
-var sqlite3 = require("sqlite3").verbose();
-var db = new sqlite3.Database(file);
+const file = "stash.db";
+const exists = fs.existsSync(file);
+const db = new sqlite3.Database(file);
 
-
-db.serialize(function () {
+db.serialize(() => {
   if (!exists) {
     db.run("CREATE TABLE stash (cmd TEXT)");
   }
 });
-var stmt = db.prepare("INSERT INTO stash VALUES (?)");
 
+const stmt = db.prepare("INSERT INTO stash VALUES (?)");
 
-// print process.argv
-const args = process.argv.slice(2);
-
-switch (args[0]) {
-  case 'push':
-    case 'p':
-
-    const argcmd = process.argv.slice(3);
-    const command = argcmd.join(' ');
-    stmt.run(command);
-
-    console.log('Pushed command: ', command);
-    stmt.finalize();
-
-    break;
-
-  case 'list':
-    case 'l':
-    db.each("SELECT rowid as id, cmd FROM stash", function (err, row) {
-      console.log(row.id + ": " + row.cmd);
-    });
-    break;
-
-  case 'get':
-    case 'g':
-
-    db.get("SELECT cmd FROM stash where rowid =="+args[1]+" limit 1", function (err, row) {
-      if(row === undefined) {
-        console.log('bad id');
-                process.exit();
-
-      }
-      console.log(row.cmd);
-      ncp.copy(row.cmd, function () {
-        console.log("copiado");
-        process.exit();
+const options = (type) => {
+  const actions = {
+    'push': () => {
+      const argcmd = process.argv.slice(3);
+      const command = argcmd.join(' ');
+      stmt.run(command);
+      stmt.finalize();
+    },
+    'list': () => {
+      console.log("[ID]\t".green.bold + "[COMMAND]".green.bold);
+      db.each("SELECT rowid as id, cmd FROM stash", (err, row) => {
+        console.log("[" + row.id.toString().cyan.bold + "]\t" + row.cmd.toString().yellow);
       });
-    });
-    break;
+    },
+    'get': () => {
+      db.get("SELECT cmd FROM stash where rowid ==" + args[1] + " limit 1", function (err, row) {
+        if (row === undefined) {
+          console.log("id ".red + "[" + args[1].cyan.bold + "]" + " not found".red);
+          process.exit();
 
-    case 'pop':
-     db.run("DELETE FROM stash WHERE rowid = "+args[1], function() {
-              console.log("poped!");
-        process.exit();
-     });
-     
-    break;
-
-    default:
-    const save = args.join(' ');
-    stmt.run(save);
-
-    console.log('Pushed command: ', save);
-    stmt.finalize();
-    break;
+        }
+        ncp.copy(row.cmd, () => process.exit());
+      });
+    },
+    'pop': () => {
+      db.run("DELETE FROM stash WHERE rowid = " + args[1], () => process.exit());
+    },
+    'default': () => {
+      const save = args.join(' ');
+      stmt.run(save);
+      stmt.finalize();
+    }
+  };
+  return (actions[type] || actions['default'])();
 }
 
-
+const args = process.argv.slice(2);
+options(args[0]);
