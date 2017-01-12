@@ -6,9 +6,10 @@ const fs      = require('fs'),
       colors  = require('colors'),
       sqlite3 = require('sqlite3');
 
-const file = "stash.db";
-const exists = fs.existsSync(file);
-const db = new sqlite3.Database(file);
+const homePath = process.env.HOME || process.env.HOMEPATH || process.env.USERPROFILE;
+const filePath = homePath+'/stash.db';
+const exists = fs.existsSync(filePath);
+const db = new sqlite3.Database(filePath);
 
 db.serialize(() => {
   if (!exists) {
