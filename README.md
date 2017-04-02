@@ -56,6 +56,9 @@ stash save
 # exec a stashed command:
 stash [exec | run] <id>
 
+# Run detached, optional custom stdout filepath redirection:
+stash [exec | run] <id> detached <stdout_filepath :: defaults to './<id>.out' >
+
 # list packs of stashed commands:
 stash pack list
 
@@ -72,6 +75,13 @@ stash pack remove <id>
 
  Changelog
 ----------
+
+1.4.0:
+
+Running commands within stash is more stable.
+
+Now, you can run commands detached, and specify the stdout piping file path.
+
 1.3.0:
 
 Added "packs" functionality.
