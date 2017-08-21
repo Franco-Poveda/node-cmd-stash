@@ -36,9 +36,7 @@ setup = function () {
     };
 
     completionPath = path.join(fs.realpathSync(__dirname), 'stash.sh');
-    fs.appendFileSync(initFile, template(". " + completionPath));
-    require('child_process').execSync('. '+ completionPath);
-    
+    fs.appendFileSync(initFile, template(". " + completionPath));    
     return;
 };
 
