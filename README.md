@@ -76,6 +76,12 @@ stash pack remove <id>
  Changelog
 ----------
 
+1.5.0:
+
+Added autocompletion generation and install (for Bash and Zsh).
+
+Now, stash notifies when a new release of the tool is available for update.
+
 1.4.0:
 
 Running commands within stash is more stable.

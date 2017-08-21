@@ -1,13 +1,13 @@
 {
   "name": "command-stash",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "description": "console help tool for save, list and retrive to clipboard your important shell commands",
   "preferGlobal": true,
   "bin": {
     "stash": "./index.js"
   },
   "scripts": {
-    "postinstall": "node ./scripts/postinstall.js",
+    "postinstall": "node ./scripts/postinstall.js && node ./scripts/completion.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Franco Poveda <franco.poveda[at]gmail.com> (Pogui)",
@@ -15,7 +15,8 @@
   "dependencies": {
     "colors": "^1.1.2",
     "copy-paste": "^1.3.0",
-    "sqlite3": "^3.1.8"
+    "sqlite3": "^3.1.8",
+    "update-notifier": "^2.2.0"
   },
   "repository": {
     "type": "git",

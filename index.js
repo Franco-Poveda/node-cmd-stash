@@ -10,6 +10,14 @@ const homePath = process.env.HOME || process.env.HOMEPATH || process.env.USERPRO
 const filePath = homePath + '/stash.db';
 const db = new sqlite3.Database(filePath);
 
+const updateNotifier = require('update-notifier');
+const pkg = require('./package.json');
+
+updateNotifier({
+	pkg,
+  updateCheckInterval: 1000 * 60 * 60 * 24
+}).notify();
+
 const options = (type) => {
 
   //Get current pack:
