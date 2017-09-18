@@ -4,6 +4,8 @@
 [![Dependency Status](https://david-dm.org/Franco-Poveda/node-cmd-stash.svg)](https://david-dm.org/Franco-Poveda/node-cmd-stash)
 ==================
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/Franco-Poveda/node-cmd-stash.svg)](https://greenkeeper.io/)
+
 node-cmd-stash
 ==================
 
