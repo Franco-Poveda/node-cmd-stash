@@ -21,7 +21,9 @@ getInitFile = function () {
     fileAtHome = fileAt(process.env.HOME);
     switch (getShell()) {
         case 'bash':
-            return fileAtHome('.bash_profile');
+           return fileAtHome(['.bashrc', '.bash_profile', '.profile'].find(f => {
+                return fs.existsSync(fileAtHome(f));
+            }));
         case 'zsh':
             return fileAtHome('.zshrc');
     }
@@ -32,12 +34,12 @@ setup = function () {
     initFile = this.getInitFile();
 
     function template(command) {
-        return "\n# command-stash completion\n" + command;
+        return "\n# command-stash completion\n" + command +"\nalias sth=\"stash\"";
     };
 
     completionPath = path.join(fs.realpathSync(__dirname), 'stash.sh');
     fs.appendFileSync(initFile, template(". " + completionPath));
-    require('child_process').execSync('source '+ completionPath,{shell: "/bin/bash"});
+    require('child_process').execSync('. '+ completionPath,{shell: "/bin/bash"});
     
     return;
 };
