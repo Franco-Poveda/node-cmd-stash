@@ -2,6 +2,8 @@
 [![Build Status](https://travis-ci.org/Franco-Poveda/node-cmd-stash.svg?branch=master)](https://travis-ci.org/Franco-Poveda/node-cmd-stash)
 ==================
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/Franco-Poveda/node-cmd-stash.svg)](https://greenkeeper.io/)
+
 node-cmd-stash
 ==================
 
