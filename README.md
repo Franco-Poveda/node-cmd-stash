@@ -1,5 +1,7 @@
 ![stash_logo](https://cloud.githubusercontent.com/assets/11579281/22157644/439ed802-df17-11e6-9178-05591a3daa9b.png)
+
 [![Build Status](https://travis-ci.org/Franco-Poveda/node-cmd-stash.svg?branch=master)](https://travis-ci.org/Franco-Poveda/node-cmd-stash)
+[![Dependency Status](https://david-dm.org/Franco-Poveda/node-cmd-stash.svg)](https://david-dm.org/Franco-Poveda/node-cmd-stash)
 ==================
 
 node-cmd-stash
