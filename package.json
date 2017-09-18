@@ -8,7 +8,7 @@
   },
   "scripts": {
     "postinstall": "node ./scripts/postinstall.js && node ./scripts/completion.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"No test specified\" && exit 0"
   },
   "author": "Franco Poveda <franco.poveda[at]gmail.com> (Pogui)",
   "license": "MIT",
