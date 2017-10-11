@@ -41,6 +41,7 @@ const options = (type) => {
       'pa': 'pack',
       'exec': 'run',
       'run': 'run',
+      '?': 'help',
       'default': 'def'
     };
     return stash[(actions[type] || actions['default'])]();
