@@ -18,7 +18,7 @@ _stash()
           COMPREPLY=( $(compgen -W "${opts}" -- ${cur}) )
         ;;
         get|pop|run) 
-          opts=$(sth l | tail -n +2 | cut -f1)
+          opts=$(stash l | tail -n +2 | cut -f1)
           COMPREPLY=( $(compgen -W "${opts}" -- ${cur}) )
         ;;
       esac
