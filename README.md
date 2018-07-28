@@ -12,7 +12,8 @@ node-cmd-stash
  * list
  * retrive (to clipboard)
  * delete
- * export list to gist
+ * export to stash cloud
+ * import from  stash cloud
  * manage list groups (packs)
  * execute
  
@@ -53,8 +54,13 @@ stash [get | g] <id>
 # remove a stashed command from the list:
 stash pop <id>
 
-# save your list to a anonymous gits (https://gist.github.com/) and retrives the link :
-stash save 
+# Now you can have all your packs anywhere, ask for a beta token!
+
+# export packs and stashed commands to stash.cloud :
+stash export <token> 
+
+# import packs and stashed commands from stash.cloud:
+stash import <token> 
 
 # exec a stashed command:
 stash [exec | run] <id>
@@ -78,6 +84,15 @@ stash pack remove <id>
 
  Changelog
 ----------
+1.6.0:
+
+Stash save action is now deprecated, since [`anonymous gist creation`](https://blog.github.com/2018-02-18-deprecation-notice-removing-anonymous-gist-creation/) was removed.
+
+Save is intended to be replaced by export and import actions. Just ask me for a TOKEN, stash.cloud service is up.
+
+List action, now prints without line overflow.
+
+Updated sqlite3 dep.
 
 1.5.0:
 
